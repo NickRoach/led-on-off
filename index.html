@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+<button id="on">on</button><button id="off">off</button>
+
+<script>
+    const on = document.getElementById("on");
+    const off = document.getElementById("off");
+
+    const handleOn = () => {
+        fetch("http://nicksrouter.ddns.net:80/on", {
+        method: "post",
+        })
+    }
+
+    const handleOff = () => {
+        fetch("http://nicksrouter.ddns.net:80/off", {
+        method: "post",
+        })
+    }
+
+    on.onclick = handleOn;
+    off.onclick = handleOff;
+</script>
+</body>
+</html>
