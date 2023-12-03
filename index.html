@@ -4,6 +4,7 @@
 
 <body>
     <div class="container">
+    <img id="img" src="https://ssl-jpeg-redirect-8d83eb3d2742.herokuapp.com/image" alt="LED" width="800">
         <h1>Turn the LED on and off as much as you like (it's free)</h1>
         <div class="buttonBox">
             <button id="on">on</button>
@@ -13,6 +14,13 @@
 </body>
 
 <script>
+    const image = document.getElementById("img");
+
+    setInterval(() => {
+        image.src = "https://ssl-jpeg-redirect-8d83eb3d2742.herokuapp.com/image?" + Math.random();
+        console.log("refreshed");
+    }, 3000);
+
     const on = document.getElementById("on");
     const off = document.getElementById("off");
 
