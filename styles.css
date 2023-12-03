@@ -1,0 +1,26 @@
+body {
+    background-color: #222222;
+    height: 100%;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.container {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonBox {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    margin: 5px;
+    height: 100px;
+    width: 200px;
+    font-size: 30px;
+}

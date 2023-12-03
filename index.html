@@ -1,7 +1,16 @@
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="styles.css">
+
 <body>
-<button id="on">on</button><button id="off">off</button>
+    <div class="container">
+        <h1>Turn the LED on and off as much as you like (it's free)</h1>
+        <div class="buttonBox">
+            <button id="on">on</button>
+            <button id="off">off</button>
+        </div>
+    </div>
+</body>
 
 <script>
     const on = document.getElementById("on");
@@ -22,5 +31,4 @@
     on.onclick = handleOn;
     off.onclick = handleOff;
 </script>
-</body>
 </html>
