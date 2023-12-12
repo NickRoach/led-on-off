@@ -4,7 +4,7 @@
 
 <body>
     <div class="container">
-    <img id="img" src="https://nicksrouter.ddns.net:81/image" alt="LED" width="800" onload='refreshImage()'>
+    <img id="img" src="https://nicksrouter.ddns.net:80/image" alt="LED" width="800" onload='refreshImage()'>
         <h1>Turn the LED on and off as much as you like (it's free)</h1>
         <div class="buttonBox">
             <button id="on">on</button>
@@ -16,8 +16,8 @@
 <script>
     const image = document.getElementById("img");
 
-    const refreshImage = () => {
-        setTimeout(() => image.src = "https://nicksrouter.ddns.net:81/image?" + Math.random(), 100)
+    image.onload = () => {
+        image.src = "https://nicksrouter.ddns.net:80/image?" + Math.random(), 100
     }
 
     const on = document.getElementById("on");
