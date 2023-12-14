@@ -1,41 +1,47 @@
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
 
-<body>
+  <body>
     <div class="container">
-    <img id="img" src="https://nicksrouter.ddns.net:80/image" alt="LED" width="800" onload='refreshImage()'>
-        <h1>Turn the LED on and off as much as you like (it's free)</h1>
-        <div class="buttonBox">
-            <button id="on">on</button>
-            <button id="off">off</button>
-        </div>
+      <img
+        id="img"
+        src="https://nicksrouter.ddns.net:80/image"
+        alt="LED"
+        width="800"
+        onload="refreshImage()"
+      />
+      <h1>Turn the LED on and off as much as you like (it's free)</h1>
+      <div class="buttonBox">
+        <button id="on">on</button>
+        <button id="off">off</button>
+      </div>
     </div>
-</body>
+  </body>
 
-<script>
+  <script>
     const image = document.getElementById("img");
 
-    image.onload = () => {
-        image.src = "https://nicksrouter.ddns.net:80/image?" + Math.random(), 100
-    }
+    const refreshImage = () => {
+      image.src = "https://nicksrouter.ddns.net:80/image?" + Math.random();
+    };
 
     const on = document.getElementById("on");
     const off = document.getElementById("off");
 
     const handleOn = () => {
-        fetch("https://nicksrouter.ddns.net:80/on", {
+      fetch("https://nicksrouter.ddns.net:80/on", {
         method: "POST",
-        })
-    }
+      });
+    };
 
     const handleOff = () => {
-        fetch("https://nicksrouter.ddns.net:80/off", {
+      fetch("https://nicksrouter.ddns.net:80/off", {
         method: "POST",
-        })
-    }
+      });
+    };
 
     on.onclick = handleOn;
     off.onclick = handleOff;
-</script>
+  </script>
 </html>
