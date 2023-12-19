@@ -1,30 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-    <title>LED controller</title>
-    <link rel="stylesheet" href="styles.css" />
-    <body>
-        <div class="container">
-            <img id="img"
-                 src="https://nicksrouter.ddns.net:80/image"
-                 alt="LED"
-                 width="800"
-                 onload="refreshImage()" />
-            <h1>Turn the LED on and off as much as you like (it's free)</h1>
-            <div class="buttonBox">
-                <button id="on">on</button>
-                <button id="off">off</button>
-            </div>
-        </div>
-    </body>
-    <script defer>
-    const image = document.getElementById("img");
-
-    const refreshImage = () => {
-      image.src = "https://nicksrouter.ddns.net:80/image?" + Math.random();
-    };
-
-    image.onload = refreshImage;
-
+  <title>LED controller</title>
+  <link rel="stylesheet" href="styles.css" />
+  <body>
+    <div class="container">
+      <img id="img"
+           src="https://nicksrouter.ddns.net:80/video"
+           alt="LED"
+           width="800" />
+      <h1>Turn the LED on and off as much as you like (it's free)</h1>
+      <div class="buttonBox">
+        <button id="on">on</button>
+        <button id="off">off</button>
+      </div>
+    </div>
+  </body>
+  <script defer>
     const on = document.getElementById("on");
     const off = document.getElementById("off");
 
@@ -42,5 +33,5 @@
 
     on.onclick = handleOn;
     off.onclick = handleOff;
-    </script>
+  </script>
 </html>
