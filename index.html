@@ -20,13 +20,13 @@
     const off = document.getElementById("off");
 
     const handleOn = () => {
-      fetch("https://nicksrouter.ddns.net:80/on", {
+      fetch("https://nicksrouter.ddns.net:80/led/on", {
         method: "POST",
       });
     };
 
     const handleOff = () => {
-      fetch("https://nicksrouter.ddns.net:80/off", {
+      fetch("https://nicksrouter.ddns.net:80/led/off", {
         method: "POST",
       });
     };
