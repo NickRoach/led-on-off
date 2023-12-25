@@ -25,10 +25,22 @@ const updateImage = async () => {
   });
   const reader = response.body.getReader();
   let start = performance.now();
+  let dolog = true;
+
   while (true) {
     const { value, done } = await reader.read();
-    image.src = URL.createObjectURL(new Blob([value]));
-    fps.innerText = Math.round(1000 / (performance.now() - start));
+    if (dolog) {
+      console.log(value);
+      const decoder = new TextDecoder("utf-8");
+      const string = decoder.decode(value);
+      // console.log(string);
+      // const jsonString = Buffer.from(value).toString("utf8");
+      const parsedData = JSON.parse(string);
+      console.log(parsedData);
+      dolog = false;
+    }
+    image.src = URL.createObjectURL(new Blob([value], { type: "image/jpeg" }));
+    fps.innerText = `fps: ${Math.round(1000 / (performance.now() - start))}`;
     start = performance.now();
     if (done) break;
   }
