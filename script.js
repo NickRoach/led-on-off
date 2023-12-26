@@ -16,9 +16,6 @@ const handleOff = () => {
 on.onclick = handleOn;
 off.onclick = handleOff;
 
-const image = document.getElementById("img");
-const fps = document.getElementById("fps");
-
 const findBoundary = (data, boundary) => {
   const candidates = [];
   const found = []
@@ -35,6 +32,10 @@ const findBoundary = (data, boundary) => {
   return found
 }
 
+
+const image = document.getElementById("img");
+const fps = document.getElementById("fps");
+
 const updateImage = async () => {
   const response = await fetch("https://nicksrouter.ddns.net:80/video", {
     method: "GET",
@@ -45,27 +46,36 @@ const updateImage = async () => {
 
   let start = performance.now();
   let chunks = [];
+  let doLog = true;
 
   while (true) {
     const { value, done } = await reader.read();
-    
-    // concatenate chunks into one array
-    chunks = chunks.concat(Array.from(value));
-    
-    // find the boundaries in the accumulated chunks
-    const boundaries = findBoundary(chunks, boundary)
 
-    // if there are two of them, it means we have a complete frame
-    if(boundaries.length >= 2) {
+    if (value) {
+      // concatenate chunks into one array
+      chunks = chunks.concat(Array.from(value));
+
+      // find the boundaries in the accumulated chunks
+      const boundaries = findBoundary(chunks, boundary)
+
+      // if (boundaries.length > 2) console.log(">2 boundaries")
+
+      // if there are at least two of them, it means we have at least one complete frame
+      if (boundaries.length >= 2) {
         const img = chunks.slice(boundaries[0] + boundary.length, boundaries[1])
         const bytes = Uint8Array.from(img)
-        image.src = URL.createObjectURL(new Blob([bytes]));
+        const framesPerSecond = Math.round(1000 / (performance.now() - start));
+        if (framesPerSecond < 30) {
+          image.src = URL.createObjectURL(new Blob([bytes]));
+
+          fps.innerText = `fps: ${framesPerSecond}`;
+          start = performance.now();
+        }
+        // leave only the last chunk, which is incomplete
         chunks = chunks.slice(boundaries[boundaries.length - 1])
-      
-        fps.innerText = `fps: ${Math.round(1000 / (performance.now() - start))}`;
-        start = performance.now();
-    } 
-  
+      }
+    }
+
     if (done) break;
   }
 };
